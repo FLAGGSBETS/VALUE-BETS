@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Value Bets · Panel de picks</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>📈 Value Bets</h1>
+  <div class="head-actions">
+    <span id="status" class="muted">Cargando…</span>
+    <button id="theme" title="Modo claro/oscuro">🌓</button>
+  </div>
+</header>
+
+<main>
+  <section class="cards">
+    <div class="card"><span>Partidos analizados</span><b id="c-matches">–</b></div>
+    <div class="card"><span>Picks con valor</span><b id="c-picks">–</b></div>
+    <div class="card"><span>Mejor EV del día</span><b id="c-ev">–</b></div>
+  </section>
+
+  <section class="filters">
+    <label>Deporte
+      <select id="f-sport"><option value="">Todos</option><option>Fútbol</option><option>Baloncesto</option><option>Tenis</option></select>
+    </label>
+    <label>Liga <select id="f-league"><option value="">Todas</option></select></label>
+    <label>Fecha
+      <select id="f-date"><option value="">Todas</option><option value="0">Hoy</option><option value="1">Mañana</option><option value="3">Próximos 3 días</option></select>
+    </label>
+    <label>Orden
+      <select id="f-sort"><option value="ev">Mayor EV</option><option value="time">Hora</option><option value="move">Mayor movimiento</option></select>
+    </label>
+    <label>Umbral EV (%) <input id="f-th" type="number" step="0.5" min="0" value="3"></label>
+    <label class="check"><input id="f-value" type="checkbox"> Solo picks con valor</label>
+    <button id="csv">⬇ CSV</button>
+  </section>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Deporte</th><th>Liga</th><th>Partido</th><th>Fecha</th><th>Mejor pick</th><th>Cuota · Casa</th><th>Prob.</th><th>EV</th><th>Mov.</th></tr></thead>
+      <tbody id="rows"></tbody>
+    </table>
+  </div>
+  <p id="empty" class="muted" hidden>No hay partidos con estos filtros.</p>
+</main>
+
+<div id="modal" hidden><div class="modal-box"><button id="close">✕</button><div id="detail"></div></div></div>
+
+<footer>Son estimaciones estadísticas, no garantizan ganar. Juega con responsabilidad. +18</footer>
+<script src="app.js"></script>
+</body>
+</html>
